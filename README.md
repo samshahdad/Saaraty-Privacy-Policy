@@ -1,0 +1,1 @@
+This is apulbic repository for Sa'raty app privacy policy provied in english and arabic for the app users. This link shall be updated on regular basis to reflect compliance with regulatory and legal requirements as outlined in the countires and geoghrapies that the "Sa'raty" app is depoloyed and users are present at.
