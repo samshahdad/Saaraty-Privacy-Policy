@@ -170,8 +170,8 @@
   </header>
 
   <div class="lang-switch">
-    <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
-    <button class="lang-btn" onclick="switchLanguage('ar')">العربية</button>
+    <button class="lang-btn active" onclick="switchLanguage('en', event)">English</button>
+    <button class="lang-btn" onclick="switchLanguage('ar', event)">العربية</button>
   </div>
 
   <!-- ================= FULL ENGLISH VERSION ================= -->
@@ -246,7 +246,7 @@
       <li>data about a person's sex life or sexual orientation</li>
     </ul>
 
-    <p><strong>Payment Data.</strong> We may collect data necessary to process your payment if you choose to make purchases, such as your payment instrument number, and the security code associated with your payment instrument. All payment data is handled and stored by Google Play Store and Apple App Store. You may find their privacy notice link(s) here: policies.google.com/privacy, and https://www.apple.com/legal/privacy/data/en/app-store/.</p>
+    <p><strong>Payment Data.</strong> We may collect data necessary to process your payment if you choose to make purchases, such as your payment instrument number, and the security code associated with your payment instrument. All payment data is handled and stored by Google Play Store and Apple App Store. You may find their privacy notice link(s) here: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a>, and <a href="https://www.apple.com/legal/privacy/data/en/app-store/" target="_blank" rel="noopener noreferrer">https://www.apple.com/legal/privacy/data/en/app-store/</a>.</p>
 
     <p><strong>Social Media Login Data.</strong> We may provide you with the option to register with us using your existing social media account details, like your Facebook, X, or other social media account. If you choose to register in this way, we will collect certain profile information about you from the social media provider, as described in the section called "HOW DO WE HANDLE YOUR SOCIAL LOGINS?" below.</p>
 
@@ -652,7 +652,7 @@
       <li>بيانات عن حياة الشخص الجنسية أو توجهه الجنسي</li>
     </ul>
 
-    <p><strong>بيانات الدفع.</strong> قد نجمع بيانات ضرورية لمعالجة الدفع إذا اخترت إجراء مشتريات، مثل رقم أداة الدفع الخاصة بك، ورمز الأمان المرتبط بأداة الدفع الخاصة بك. جميع بيانات الدفع تُعالج وتُخزن بواسطة Google Play Store و Apple App Store. يمكنك العثور على روابط إشعار الخصوصية الخاصة بهم هنا: policies.google.com/privacy, و https://www.apple.com/legal/privacy/data/en/app-store/.</p>
+    <p><strong>بيانات الدفع.</strong> قد نجمع بيانات ضرورية لمعالجة الدفع إذا اخترت إجراء مشتريات، مثل رقم أداة الدفع الخاصة بك، ورمز الأمان المرتبط بأداة الدفع الخاصة بك. جميع بيانات الدفع تُعالج وتُخزن بواسطة Google Play Store و Apple App Store. يمكنك العثور على روابط إشعار الخصوصية الخاصة بهم هنا: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a>، و <a href="https://www.apple.com/legal/privacy/data/en/app-store/" target="_blank" rel="noopener noreferrer">https://www.apple.com/legal/privacy/data/en/app-store/</a>.</p>
 
     <p><strong>بيانات تسجيل الدخول الاجتماعي.</strong> قد نوفر لك الخيار للتسجيل معنا باستخدام تفاصيل حساب وسائط اجتماعية موجود لديك، مثل حساب Facebook أو X الخاص بك، أو حساب وسائط اجتماعية آخر. إذا اخترت التسجيل بهذه الطريقة، سنجمع معلومات ملف تعريف معينة عنك من مزود الوسائط الاجتماعية، كما هو موصوف في القسم المسمى "كيف نتعامل مع تسجيلات الدخول الاجتماعية الخاصة بك؟" أدناه.</p>
 
@@ -995,13 +995,14 @@
 </div>
 
 <script>
-  function switchLanguage(lang) {
+  function switchLanguage(lang, e) {
     const en = document.getElementById('en-content');
     const ar = document.getElementById('ar-content');
     const buttons = document.querySelectorAll('.lang-btn');
 
     buttons.forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    if (e && e.target) e.target.classList.add('active');
+    else document.querySelector('.lang-btn[onclick*="' + lang + '"]')?.classList.add('active');
 
     if (lang === 'ar') {
       document.documentElement.lang = 'ar';
